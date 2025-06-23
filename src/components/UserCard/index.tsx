@@ -2,11 +2,9 @@ import { User } from '@/state/api';
 import Image from 'next/image';
 import React from 'react';
 
-
 type Props = {
   user: User;
 };
-
 
 const UserCard = ({ user }: Props) => {
   return (
@@ -27,6 +25,5 @@ const UserCard = ({ user }: Props) => {
     </div>
   );
 };
-
 
 export default UserCard;

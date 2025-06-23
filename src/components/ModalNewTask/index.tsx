@@ -1,4 +1,9 @@
-import { Priority, Status, useCreateTaskMutation } from '@/state/api';
+import {
+  Priority,
+  Status,
+  useCreateTaskMutation,
+  useGetProjectsQuery,
+} from '@/state/api';
 import { formatISO } from 'date-fns';
 import React, { useState } from 'react';
 import Modal from '../Modal';
@@ -17,10 +22,11 @@ const ModalNewTask = ({ isOpen, onClose }: Props) => {
   const [tags, setTags] = useState('');
   const [startDate, setStartDate] = useState('');
   const [dueDate, setDueDate] = useState('');
-  const [projectId, setProjectId] = useState('1')
+  const [projectId, setProjectId] = useState('1');
   const [authorUserId, setAuthorUserId] = useState('2');
   const [assignedUserId, setAssignedUserId] = useState('3');
-  
+
+  // const {data: Projects } = useGetProjectsQuery();
 
   const handleSubmit = async () => {
     if (!title) return;
@@ -103,7 +109,7 @@ const ModalNewTask = ({ isOpen, onClose }: Props) => {
             }
           >
             <option value="">Select Priority</option>
-            <option value={Priority.Ugent}>Ugent</option>
+            <option value={Priority.Urgent}>Urgent</option>
             <option value={Priority.High}>High</option>
             <option value={Priority.Medium}>Medium</option>
             <option value={Priority.Low}>Low</option>

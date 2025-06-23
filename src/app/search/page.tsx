@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
 import Header from '@/components/Header';
 import ProjectCard from '@/components/ProjectCard';
-import TaskCard from '@/components/Taskcard';
+import TaskCard from '@/components/TaskCard';
 import UserCard from '@/components/UserCard';
 import { useSearchQuery } from '@/state/api';
 import { debounce } from 'lodash';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -18,7 +18,6 @@ const Search = () => {
     skip: searchTerm.length < 3, // 쿼리가 3자 미만이면 실행하지 않음
   });
 
-
   const handleSearch = debounce(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       setSearchTerm(event.target.value);
@@ -26,9 +25,7 @@ const Search = () => {
     500
   );
 
-
   // console.log(searchResults);
-
 
   useEffect(() => {
     return handleSearch.cancel;
@@ -57,14 +54,12 @@ const Search = () => {
               <TaskCard key={task.id} task={task} />
             ))}
 
-
             {searchResults.project && searchResults.project?.length > 0 && (
               <h2>Projects</h2>
             )}
             {searchResults.project?.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
-
 
             {searchResults.users && searchResults.users?.length > 0 && (
               <h2>Users</h2>
@@ -76,9 +71,7 @@ const Search = () => {
         )}
       </div>
     </div>
+  );
+};
 
-
-  )
-}
-
-export default Search
+export default Search;

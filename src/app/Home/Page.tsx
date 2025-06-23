@@ -1,6 +1,5 @@
 'use client';
 
-
 import {
   Priority,
   Project,
@@ -27,7 +26,6 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import Header from '@/components/Header';
 import { dataGridClassNames, dataGridSxStyles } from '@/lib/utils';
 
-
 const taskColumns: GridColDef[] = [
   { field: 'title', headerName: 'Title', width: 200 },
   { field: 'status', headerName: 'Status', width: 150 },
@@ -35,9 +33,7 @@ const taskColumns: GridColDef[] = [
   { field: 'dueDate', headerName: 'Due Date', width: 150 },
 ];
 
-
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
 
 const HomePage = () => {
   const {
@@ -48,13 +44,10 @@ const HomePage = () => {
   const { data: projects, isLoading: isProjectsLoading } =
     useGetProjectsQuery();
 
-
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
-
 
   if (tasksLoading || isProjectsLoading) return <div>Loading..</div>;
   if (tasksError || !tasks || !projects) return <div>Error fetching data</div>;
-
 
   const priorityCount = tasks.reduce(
     (acc: Record<string, number>, task: Task) => {
@@ -65,12 +58,10 @@ const HomePage = () => {
     {}
   );
 
-
   const taskDistribution = Object.keys(priorityCount).map((key) => ({
     name: key,
     count: priorityCount[key],
   }));
-
 
   const statusCount = projects.reduce(
     (acc: Record<string, number>, project: Project) => {
@@ -81,12 +72,10 @@ const HomePage = () => {
     {}
   );
 
-
   const projectStatus = Object.keys(statusCount).map((key) => ({
     name: key,
     count: statusCount[key],
   }));
-
 
   const chartColors = isDarkMode
     ? {
@@ -101,7 +90,6 @@ const HomePage = () => {
         pieFill: '#82ca9d',
         text: '#000000',
       };
-
 
   return (
     <div className="container h-full w-[100%] bg-gray-100 bg-transparent p-8">
@@ -170,6 +158,5 @@ const HomePage = () => {
     </div>
   );
 };
-
 
 export default HomePage;
